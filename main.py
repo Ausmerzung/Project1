@@ -15,7 +15,7 @@ async def decline(user_id:int, chat_id:int):
 
     if user_id in pending_requests:
         await bot.decline_chat_join_request(chat_id=chat_id, user_id=user_id)
-        await bot.send_message(user_id, "время вышло. заявка отклонена")
+        await bot.send_message(user_id, "Время вышло, заявка отклонена.")
         del pending_requests[user_id]
 
 @dp.chat_join_request()
@@ -26,7 +26,7 @@ async def join_request(join_request:ChatJoinRequest):
     task = asyncio.create_task(decline(user_id,chat_id))
     pending_requests[user_id] = task
 
-    await bot.send_message(user_id, "заявка обрабатывается")
+    await bot.send_message(user_id, "Вы подали заявку, напишите любое сообщение в течение 1 минуты, или заявка будет отклонена.")
 
 
 @dp.message()
