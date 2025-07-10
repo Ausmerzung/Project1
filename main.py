@@ -36,6 +36,7 @@ async def any_message(message:Message):
     if user_id in pending_requests:
         pending_requests[user_id].cancel()
         del pending_requests[user_id]
+        await message.answer("Таймер остановлен, заявка будет рассмотрена другими администраторами группы.")
 
 
 async def main():
